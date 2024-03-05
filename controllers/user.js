@@ -3,7 +3,7 @@ import bcryptjs from "bcryptjs";
 import { sendCookie } from "../utils/features.js";
 import ErrorHandler from "../middlewares/error.js";
 
-export const registers = async (req, res) => {
+export const registers = async (req, res , next) => {
       try {
             const { name, email, password } = req.body;
             let user = await User.findOne({ email });
@@ -47,7 +47,7 @@ export const login = async (req, res, next) => {
 export const logout = (req, res) => {
       res.status(200).cookie("token", "", { 
             expires: new Date(Date.now()),
-            sameSite: process.env.NODE_ENV === "Developement" ? "lax" : "none",
+            sameSite: process.env.NODE_ENV === "Developement" ? "lax" : "None",
 		secure: process.env.NODE_ENV === "Developement" ? false : true,
       }).json({
             success: true,
