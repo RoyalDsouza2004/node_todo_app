@@ -6,10 +6,11 @@ export const sendCookie = (user, res, message, statusCode = 200) => {
 	res.status(statusCode).cookie("token", token, {
 		httpOnly: true,
 		maxAge: 15 * 60 * 1000,
-		sameSite: process.env.NODE_ENV === "Developement" ? "lax" : "None",
-		secure: process.env.NODE_ENV === "Developement" ? false : true,
-	}).json({
+		secure: process.env.NODE_ENV === "Development" ? false : true,
+		sameSite: process.env.NODE_ENV === "Development" ? "lax" : "none",
+	  }).json({
 		success: true,
 		message,
-	})
+	  })
+	  
 }
